@@ -18,7 +18,7 @@ $form.addEventListener("submit", e => {
     localStorage.setItem("agencia", $agencia.value)
     localStorage.setItem("conta", $conta.value)
 
-    
+
 })
 
 function VerificarCampos() {
@@ -35,7 +35,7 @@ function VerificarCampos() {
 }
 
 function IrParaProximo() {
-    
+
     VerificarCampos();
     if (!camposValidos) return;
 
@@ -47,7 +47,7 @@ function IrParaProximo() {
         $alertConta.innerHTML = "Número da conta incorreta!"
     }
 
-    podeIrParaProximo = $agencia.value === "1234" && $conta.value === "567890" ? true : false;
+    podeIrParaProximo = $agencia.value === "1234" && $conta.value === "56789-0" ? true : false;
 }
 
 
@@ -59,4 +59,6 @@ $agencia.addEventListener("input", () => {
 $conta.addEventListener("input", () => {
     $alertConta.innerHTML = "";
     $conta.value = $conta.value.replace(/\D/g, "")
+        .replace(/(\d{5})(\d)/g, "$1-$2")
+        .replace(/(-\d{1})\d+?$/g, "$1")
 })
